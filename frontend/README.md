@@ -12,7 +12,7 @@ A Next.js 14 template for SaaS applications with NextUI and Tailwind CSS.
 
 ## Getting Started
 
-To get started with this template, follow these steps:
+To get started with this app, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/dev7tech/AIPlayground.git`
 2. Install the dependencies: `npm install`
