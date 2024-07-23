@@ -1,4 +1,4 @@
-# NextUi SaaS landing page template
+# Simple NextUi SaaS Application
 
 A Next.js 14 template for SaaS applications with NextUI and Tailwind CSS.
 
