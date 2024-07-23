@@ -68,8 +68,8 @@ def clear_message(generated_msg):
 
 async def communicate_with_gpt(prompt, conversation) -> str:
 	gpt4_msg = ''
+	print("conversation: ", conversation)
 	try:
-		print("conversation: ", conversation)
 		response = await open_ai.chat.completions.create(
 			messages=[
 				{"role": "system", "content": prompt},
