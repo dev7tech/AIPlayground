@@ -1,0 +1,8 @@
+flask
+opencv-python
+openai
+dlib==19.22.1
+face_recognition
+Pillow
+numpy
+flask-cors
