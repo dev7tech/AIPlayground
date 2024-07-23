@@ -20,7 +20,7 @@ To get started with this template, follow these steps:
 
 ## Usage
 
-Once the development server is running, you can access the application at `http://localhost:3000`. From there, you can have fund by wearing glasses to your face and chatting with AI.
+Once the development server is running, you can access the application at `http://localhost:3000`. From there, you can have fun by wearing glasses to your face and chatting with AI.
 
 ## Contributing
 
