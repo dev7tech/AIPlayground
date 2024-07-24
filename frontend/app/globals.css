@@ -20,3 +20,7 @@ body {
   color: rgb(var(--foreground));
   background-color: rgb(var(--background));
 }
+
+.h-main {
+  min-height: calc(100vh - 4rem);
+}

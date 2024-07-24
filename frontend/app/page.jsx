@@ -1,13 +1,11 @@
-import Dashboard from './dashboard/page';
-import { Footer, Pricing, Partners, Faq } from './components';
+import { Hero, Footer, Languages, Faq } from './components';
 
 export default function Home() {
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className='flex flex-col md:h-main sm:max-h-screen'>
       <main>
-        <Dashboard />
-        <Partners />
-        <Pricing />
+        <Hero />
+        <Languages />
         <Faq />
       </main>
       <Footer />

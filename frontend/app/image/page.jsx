@@ -36,7 +36,7 @@ const WearGlasses = () => {
     const formData = new FormData();
     formData.append('file', selectedFile);
 
-    api.imageUpload(formData).then((url) => {
+    api.wearGlasses(formData).then((url) => {
       if (url) {
         setGeneratedImageSrc(url);
       } else {

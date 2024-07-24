@@ -4,17 +4,12 @@ import face_recognition
 import io
 from flask_cors import CORS
 from openai import AsyncOpenAI
-from dotenv import dotenv_values
 import os
 import math
+import asyncio
 
 app = Flask(__name__)
 CORS(app)
-
-env_vars = dotenv_values('.env')
-api_key: str = env_vars.get("OPENAI_API_KEY")
-
-open_ai = AsyncOpenAI(api_key=api_key)
 
 def detect_landmarks(image):
 	face_landmarks_list = face_recognition.face_landmarks(image)
@@ -71,11 +66,11 @@ async def communicate_with_gpt(prompt, conversation) -> str:
 	print("conversation: ", conversation)
 	try:
 		response = await open_ai.chat.completions.create(
+			model="gpt-4",
 			messages=[
 				{"role": "system", "content": prompt},
 				{"role": "user", "content": conversation}
 			],
-			model="gpt-4",
 			max_tokens=100
 		)
 		print("Response from GPT4 : ", response)
@@ -85,6 +80,7 @@ async def communicate_with_gpt(prompt, conversation) -> str:
 			return "Error:Quota exceeded. Please check your OpenAI account."
 		return "Error:An error occurred. Please try again later."
 	return clear_message(gpt4_msg)
+
 
 @app.route('/chat', methods=['POST'])
 async def chat():
@@ -98,7 +94,28 @@ async def chat():
 	return jsonify({"response": conversation})
 
 
-@app.route('/upload', methods=['POST'])
+@app.route('/verifyApiKey', methods=['POST'])
+async def verifyApiKey():
+	apiKey = request.json
+ 
+	if not apiKey:
+		return {"valid": False, "error": "API key is required"}
+
+	global open_ai
+	open_ai = AsyncOpenAI(api_key=apiKey)
+
+	try:
+		response = await open_ai.chat.completions.create(
+			model="gpt-4",
+			messages=[{"role": "user", "content": "Say hello!"}],
+			max_tokens=5
+		)
+		return {"valid": True}
+	except Exception as e:
+		return {"valid": False, "error": str(e)}
+
+
+@app.route('/glasses', methods=['POST'])
 def upload_file():
 	if 'file' not in request.files:
 		return jsonify({'error': 'No file part'}), 400
@@ -119,4 +136,4 @@ def upload_file():
 		return img_byte_arr, 200
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	asyncio.run(app.run(debug=True))

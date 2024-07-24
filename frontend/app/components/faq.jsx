@@ -1,10 +1,31 @@
 'use client';
 import { Accordion, AccordionItem } from '@nextui-org/accordion';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export const Faq = () => {
-  const defaultContent =
-    'Here is the content of the accordion. You can put any elements here.';
+  const faqContent = [
+    {
+      question: 'How does the glasses-wearing feature work?',
+      answer:
+        'Our application uses advanced facial recognition and augmented reality technology to wear glasses to your face. Simply upload your picture, and the glasses will appear on your face on the picture.',
+    },
+    {
+      question: 'How can I get started to chat with AI?',
+      answer:
+        'Super easy. Simply input your Open AI Api Key in the input field on the right, and then you can start chatting with AI.',
+    },
+    {
+      question: 'What kind of AI do you use for chat?',
+      answer:
+        'Our chat feature is powered by a state-of-the-art language model developed by OpenAI. It can understand and generate human-like responses to a wide range of questions and prompts.',
+    },
+    {
+      question: 'Do I need any special hardware to use this app?',
+      answer:
+        'No special hardware is required. As long as you have an internet connection, you can use all features of our app.',
+    },
+  ];
   return (
     <section className='relative max-w-screen-xl mx-auto px-4 py-28 gap-12 md:px-8 flex flex-col justify-center items-center'>
       <motion.div
@@ -22,7 +43,14 @@ export const Faq = () => {
         </h4>
         <p className='max-w-xl text-foreground/80 text-center'>
           Here are some of our frequently asked questions. If you have any other
-          questions you’d like answered please feel free to email us.
+          questions you’d like answered please feel free to contact{' '}
+          <Link
+            href='mailto:jacob.devtech102@gmail.com'
+            className='text-primary underline'
+          >
+            me
+          </Link>
+          .
         </p>
       </motion.div>
       <motion.div
@@ -73,15 +101,15 @@ export const Faq = () => {
             },
           }}
         >
-          <AccordionItem key='1' aria-label='¿Why NextUI?' title='¿Why NextUI'>
-            {defaultContent}
-          </AccordionItem>
-          <AccordionItem key='2' aria-label='¿Why NextUI?' title='¿Why NextUI?'>
-            {defaultContent}
-          </AccordionItem>
-          <AccordionItem key='3' aria-label='¿Why NextUI?' title='¿Why NextUI?'>
-            {defaultContent}
-          </AccordionItem>
+          {faqContent.map((faq, index) => (
+            <AccordionItem
+              key={index}
+              aria-label={faq.question}
+              title={faq.question}
+            >
+              {faq.answer}
+            </AccordionItem>
+          ))}
         </Accordion>
       </motion.div>
       <div className='absolute w-40 h-40 border bg-light -left-28 top-0 blur-[200px]'></div>

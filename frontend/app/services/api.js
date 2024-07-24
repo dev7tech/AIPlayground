@@ -1,9 +1,26 @@
 import axios from 'axios';
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
-const imageUpload = (formData) => {
+const verifyApiKey = async (apiKey) => {
+  return await axios
+    .post(`${serverUrl}/verifyApiKey`, apiKey, {
+      responseType: 'json',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error('There was an error while connecting with server.');
+      return null;
+    });
+};
+
+const wearGlasses = (formData) => {
   return axios
-    .post(`${serverUrl}/upload`, formData, {
+    .post(`${serverUrl}/glasses`, formData, {
       responseType: 'arraybuffer',
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -20,7 +37,7 @@ const imageUpload = (formData) => {
     });
 };
 
-const chatWithAI = (message) => {
+const chatWithAI = async (message) => {
   return axios
     .post(`${serverUrl}/chat`, message, {
       responseType: 'json',
@@ -38,6 +55,7 @@ const chatWithAI = (message) => {
 };
 
 export const api = {
-  imageUpload,
+  wearGlasses,
   chatWithAI,
+  verifyApiKey,
 };

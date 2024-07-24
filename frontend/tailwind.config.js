@@ -1,4 +1,4 @@
-import {nextui} from "@nextui-org/react";
+import { nextui } from '@nextui-org/react';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -6,12 +6,12 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       colors: {
-        light: "hsl(var(--light))",
+        light: 'hsl(var(--light))',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -20,20 +20,20 @@ module.exports = {
       },
     },
   },
-  darkMode: "class",
+  darkMode: 'class',
   plugins: [
     nextui({
       layout: {
-        disabledOpacity: "0.3", // opacity-[0.3]
+        disabledOpacity: '0.3', // opacity-[0.3]
         radius: {
-          small: "4px", // rounded-small
-          medium: "6px", // rounded-medium
-          large: "8px", // rounded-large
+          small: '4px', // rounded-small
+          medium: '6px', // rounded-medium
+          large: '8px', // rounded-large
         },
         borderWidth: {
-          small: "1px", // border-small
-          medium: "2px", // border-medium
-          large: "3px", // border-large
+          small: '1px', // border-small
+          medium: '2px', // border-medium
+          large: '3px', // border-large
         },
       },
       themes: {
@@ -41,5 +41,6 @@ module.exports = {
         dark: {},
       },
     }),
+    require('tailwind-scrollbar'),
   ],
-}
+};

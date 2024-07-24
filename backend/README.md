@@ -9,7 +9,6 @@ This project is a Flask-based API for face recognition that utilizes OpenAI's AP
   - [Windows](#windows)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
-- [Environment Variables](#environment-variables)
 - [License](#license)
 
 ## Installation
@@ -78,10 +77,6 @@ python main.py
 
 - POST /image: Wear glasses to your face.
 - POST /chat: Chat with AI.
-
-## Environment Variables
-
-1. **Create a .env file in the root of your project to store environment variables**: OPENAI_API_KEY=your_openai_api_key
 
 ## License
 
